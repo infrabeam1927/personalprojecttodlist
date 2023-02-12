@@ -1,0 +1,53 @@
+todo_list = []
+
+def add_task(task_name, task_description):
+    task = {
+        "task_name": task_name,
+        "task_description": task_description,
+        "completed": False
+    }
+    todo_list.append(task)
+    print("Task added:", task)
+
+def view_tasks():
+    if len(todo_list) == 0:
+        print("No tasks to display.")
+    else:
+        for task in todo_list:
+            print(task)
+
+def complete_task(task_name):
+    task_found = False
+    for i, task in enumerate(todo_list):
+        if task["task_name"] == task_name:
+            task_found = True
+            task["completed"] = True
+            print("Task completed:", task)
+            break
+    if not task_found:
+        print("Task not found.")
+
+def main_menu():
+    while True:
+        print("--- To-Do List ---")
+        print("1. Add Task")
+        print("2. View Tasks")
+        print("3. Complete Task")
+        print("4. Quit")
+        choice = int(input("Enter your choice: "))
+        if choice == 1:
+            task_name = input("Enter task name: ")
+            task_description = input("Enter task description: ")
+            add_task(task_name, task_description)
+        elif choice == 2:
+            view_tasks()
+        elif choice == 3:
+            task_name = input("Enter task name: ")
+            complete_task(task_name)
+        elif choice == 4:
+            break
+        else:
+            print("Invalid choice.")
+
+if __name__ == "__main__":
+    main_menu()
